@@ -1,0 +1,1 @@
+# bot-troca-de-loja
