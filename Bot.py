@@ -128,6 +128,22 @@ def login(driver):
         return False
 
 # Função para acessar a página de XMLs
+"""
+lista de lojas 
+<select name="ctl00$VNDropDownList1" onchange="trap=true;setTimeout('__doPostBack(\'ctl00$VNDropDownList1\',\'\')', 0)" id="VNDropDownList1" class="Drop" style="font-family:Tahoma;font-size:8.5pt;width:210px;">
+	<option value="922">Lions-ATC</option>
+	<option value="1042">Lions-BM</option>
+	<option value="1080">Lions-CG</option>
+	<option value="846">Lions-DC</option>
+	<option value="941">Lions-IT</option>
+	<option selected="selected" value="628">Lions-MT</option>
+	<option value="1081">Lions-NI</option>
+	<option value="993">Lions-NT</option>
+	<option value="1100">Lions-OS</option>
+	<option value="1087">Lions-VP</option>
+
+</select>
+"""
 def entrarNaPagina(driver):
     try:
         logging.info("Acessando a página de veículos")
@@ -138,7 +154,7 @@ def entrarNaPagina(driver):
 
         driver.execute_script("""
             var selectElement = arguments[0];
-            selectElement.value = '993';  // Valor de "Lions-OS"
+            selectElement.value = "1042";  // Valor de "Lions-OS"
             selectElement.dispatchEvent(new Event('change', { bubbles: true }));
             selectElement.dispatchEvent(new Event('input', { bubbles: true }));
             setTimeout(function() { __doPostBack('ctl00$VNDropDownList1', '') }, 0);
@@ -285,7 +301,7 @@ def AbrirArquivo(driver):
                         logging.info(f"Vendedor selecionado: {vendedor_selecionado}")
                         
                         if vendedor_selecionado and vendedor_selecionado != "Selecione...":
-                            salvar_veiculo(vehicle_id, placa, "Lions-NT", vendedor_selecionado)
+                            salvar_veiculo(vehicle_id, placa, "Lions-BM", vendedor_selecionado)
                             logging.info(f"Dados do veículo ID: {vehicle_id}, Placa: {placa}, Vendedor: {vendedor_selecionado} salvos no banco")
                             
                             # Remover vendedor
